@@ -28,3 +28,25 @@ def create_connection_in_memory():
 if __name__ == '__main__':
     create_connection(r"database.db")
     create_connection_in_memory()
+
+
+create_urls_sql = """
+-- URLS TABLE
+CREATE TABLE IF NOT EXISTS urls (
+    id integer PRIMARY KEY,
+    nazwa text NOT NULL
+);
+"""
+
+create_meta_sql = """
+--- META TABLE
+CREATE TABLE IF NOT EXISTS meta (
+    id integer PRIMARY KEY,
+    projekt_id integer NOT NULL,
+    meta_title TEXT,
+    meta_description TEXT,
+    header_1 TEXT,
+    FOREIGN KEY (projekt_id) REFERENCES urls (id)
+)
+"""
+
